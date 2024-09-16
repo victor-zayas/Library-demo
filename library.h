@@ -1,6 +1,9 @@
 #ifndef LIBRARY_H
 # define LIBRARY_H
 
+// Defines
+#define MAX_INPUT 256
+
 // Includes
 # include <stddef.h>
 # include <stdlib.h>
@@ -8,20 +11,19 @@
 # include <stdio.h>
 # include <string.h>
 
-
 // Structs
-typedef struct s_list
-{
-	void			*book;
-	struct s_list	*next;
-}	t_list;
-
 typedef struct s_book
 {
 	char    *title;
     char    *author;
     char     *year;
 }	t_book;
+
+typedef struct s_list
+{
+	t_book			*book;
+	struct s_list	*next;
+}	t_list;
 
 
 // Prototypes
