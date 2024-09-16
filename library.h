@@ -6,6 +6,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <string.h>
 
 
 // Structs
@@ -19,7 +20,7 @@ typedef struct s_book
 {
 	char    *title;
     char    *author;
-    int     year;
+    char     *year;
 }	t_book;
 
 
