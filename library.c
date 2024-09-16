@@ -32,8 +32,9 @@ t_book  *create_book(char *title, char *author, int year)
 void    add_book(char *title, char *author, int year)
 {
     t_list  *list;
-    t_list  *tmp;
     t_book  *book;
+    t_list  *prev; // previous book
+    t_list  *curr; // current book
 
     if (!title || !author || !year)
     {
@@ -42,15 +43,29 @@ void    add_book(char *title, char *author, int year)
     }
     book = create_book(title, author, year);
     list = create_node(book);
-    if (!book_list)
-        book_list = list;
-    else
+    
+    // inset at the beginning
+    if (!book_list || strcmp(title, book_list->book->title) < 0)
     {
-        tmp = book_list;
-        while (tmp->next)
-            tmp = tmp->next;
-        tmp->next = list;
+        list->next = book_list;
+        book_list = list;
+        printf("New book added: %s\n", title);
+        return ;
     }
+
+    // search alphabetical order
+    prev = NULL;
+    curr = book_list;
+    while (curr != NULL && strcmp(title, curr->book->title) > 0)
+    {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    // insert on alphabetically order
+    prev->next = list;
+    list->next = curr;
+
     printf("New book added: %s\n", title);
 }
 
